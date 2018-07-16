@@ -12,12 +12,12 @@ Tools::~Tools() {}
 VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
                               const vector<VectorXd> &ground_truth) {
 	VectorXd accum(4);
-	accum << 0, 0, 0, 0, 0;
+	accum << 0, 0, 0, 0;
 
-	VectorXd res(5);
-	VectorXd ressq(5);
-	VectorXd mean(5);
-	VectorXd rmse(5);
+	VectorXd res(4);
+	VectorXd ressq(4);
+	VectorXd mean(4);
+	VectorXd rmse(4);
 
 	if (estimations.size() == 0) {
 		cout << "error...no estimations" << endl;
@@ -28,7 +28,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
 	}
 
 	// accumulate squared residuals
-	for (int i = 0; i < estimations.size(); ++i) {
+	for (int i = 0; i < estimations.size(); i++) {
 		res = estimations[i] - ground_truth[i];
 		ressq = res.array() * res.array();
 		accum = accum + ressq;
